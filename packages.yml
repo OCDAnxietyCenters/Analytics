@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 packages:
   - package: dbt-labs/codegen
     version: 0.14.0
+=======
+
+>>>>>>> 73ea7df087092ae670bc4f0f15a00b3a250c09a4
