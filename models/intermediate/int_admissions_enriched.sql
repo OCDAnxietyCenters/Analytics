@@ -14,7 +14,7 @@ joined as (
     select
         admissions.episode_id,
         admissions.mrn,
-        locations.name,
+        locations.name as location_name,
         census.payor,
         census.pricouns,
         admissions.program,

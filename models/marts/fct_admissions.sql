@@ -6,7 +6,7 @@ with enriched_admissions as (
     select
         episode_id
         , mrn
-        , name
+        , location_name
         , program
         , fname
         , lname
