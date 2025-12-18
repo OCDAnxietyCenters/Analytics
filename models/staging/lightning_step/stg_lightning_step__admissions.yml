@@ -1,0 +1,18 @@
+models:
+  - name: stg_lightning_step__admissions
+    description: "{{ doc('stg_lightning_step__admissions')}}"
+    columns:
+      - name: dctype_id
+        data_tests:
+          - unique
+          - not_null
+      - name: id
+        data_tests:
+          - unique
+          - not_null
+      - name: dcreason
+        data_tests:
+          - unique
+          - not_null:
+              config:
+                severity: warn
