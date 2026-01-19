@@ -1,0 +1,93 @@
+with 
+
+source as (
+
+    select * from {{ source('lightning_step_census_admissions', 'table_admissions') }}
+
+),
+
+renamed as (
+
+    select
+        bed_id_table_admissions as bed_id,
+        client_id_table_admissions as client_id,
+        created_at_table_admissions as created_at,
+        dateaction_table_admissions as dateaction,
+        dateadmission_table_admissions as dateadmission,
+        datedischarge_table_admissions as datedischarge,
+        datedoc_table_admissions as datedoc,
+        datefupdue_table_admissions as datefupdue,
+        datetransfer_table_admissions as datetransfer,
+        dccode_table_admissions as dccode,
+        dcreason_table_admissions as dcreason,
+        dcstatuscode_table_admissions as dcstatuscode,
+        dctype_id_table_admissions as dctype_id,
+        dctype_table_admissions as dctype,
+        dctypedd_id_table_admissions as dctypedd_id,
+        discharged_by_user_id_table_admissions as discharged_by_user_id,
+        dob_table_admissions as dob,
+        dom_table_admissions as dom,
+        doy_table_admissions as doy,
+        dss_table_admissions as dss,
+        eie_table_admissions as eie,
+        episode_id_table_admissions as episode_id,
+        fname_table_admissions as fname,
+        fupclient_id_table_admissions as fupclient_id,
+        fupfname_table_admissions as fupfname,
+        fuplname_table_admissions as fuplname,
+        fupstaff_id_table_admissions as fupstaff_id,
+        gender_table_admissions as gender,
+        id_table_admissions as id,
+        inquiry_id_table_admissions as inquiry_id,
+        isautocharge_table_admissions as isautocharge,
+        isdd_table_admissions as isdd,
+        isfollowup_table_admissions as isfollowup,
+        isnewepisode_table_admissions as isnewepisode,
+        isoutpatient_table_admissions as isoutpatient,
+        jfc_table_admissions as jfc,
+        keycheck_table_admissions as keycheck,
+        lname_table_admissions as lname,
+        location_id_table_admissions as location_id,
+        los_table_admissions as los,
+        lsdtupdate_table_admissions as lsdtupdate,
+        lsluby_id_table_admissions as lsluby_id,
+        luby_id_table_admissions as luby_id,
+        methadoneyn_table_admissions as methadoneyn,
+        mi_table_admissions as mi,
+        mname_table_admissions as mname,
+        mo_table_admissions as mo,
+        mrn_table_admissions as mrn,
+        precog_delta_key_table_admissions as precog_delta_key,
+        program_id_table_admissions as program_id,
+        program_table_admissions as program,
+        projdatedc_table_admissions as projdatedc,
+        projdatetf_table_admissions as projdatetf,
+        provideruser_id_table_admissions as provideruser_id,
+        room_id_table_admissions as room_id,
+        sfname_table_admissions as sfname,
+        slname_table_admissions as slname,
+        staff_id_table_admissions as staff_id,
+        staffdd_id_table_admissions as staffdd_id,
+        status_id_table_admissions as status_id,
+        status_table_admissions as status,
+        subprogram_id_table_admissions as subprogram_id,
+        successful_dc_table_admissions as successful_dc,
+        table_admissions_precog_key as precog_key,
+        termtype_table_admissions as termtype,
+        timeadmission_table_admissions as timeadmission,
+        timedischarge_table_admissions as timedischarge,
+        timetransfer_table_admissions as timetransfer,
+        transfer_to_admission_id_table_admissions as transfer_to_admission_id,
+        transferlocation_id_table_admissions as transferlocation_id,
+        transferredfrom_id_table_admissions as transferredfrom_id,
+        transferto_id_table_admissions as transferto_id,
+        unit_id_table_admissions as unit_id,
+        updated_at_table_admissions as updated_at,
+        yr_table_admissions as yr,
+        precog_delta_version_table_admissions as precog_delta_version
+
+    from source
+
+)
+
+select * from renamed
