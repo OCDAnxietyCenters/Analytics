@@ -1,0 +1,25 @@
+# models/staging/lightning_step/census_admissions_episode/stg_lightning_step__users.yml
+version: 2
+
+models:
+  - name: stg_lightning_step__users
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: user_id
+        data_type: number
+        tests: [not_null, unique]
+      - name: email
+        data_type: varchar
+        tests: [not_null]
+      - name: name
+        data_type: varchar
+      - name: role
+        data_type: varchar
+      - name: title
+        data_type: varchar
+      - name: is_active
+        data_type: boolean
+      - name: updated_at_ntz
+        data_type: timestamp_ntz
