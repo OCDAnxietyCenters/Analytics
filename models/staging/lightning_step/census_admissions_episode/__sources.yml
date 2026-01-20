@@ -1,0 +1,58 @@
+version: 2
+
+sources:
+  - name: lightning_step_census_admissions
+    description: "Census and admission data from Lightning Step"
+    database: precog
+    schema: LS_CENSUS_ADMISSIONS_EPISODE_LIGHTNING_STEP_OAC
+    tables:
+      - name: table_admissions
+        description: "Admissions information"
+        columns: 
+          - name: EPISODE_ID_TABLE_ADMISSIONS
+          - name: MRN_TABLE_ADMISSIONS
+          - name: PROGRAM_TABLE_ADMISSIONS
+          - name: FNAME_TABLE_ADMISSIONS
+          - name: LNAME_TABLE_ADMISSIONS
+          - name: DATEDISCHARGE_TABLE_ADMISSIONS
+          - name: DCTYPE_TABLE_ADMISSIONS
+          - name: DCREASON_TABLE_ADMISSIONS
+          - name: LOCATION_ID_TABLE_ADMISSIONS
+          - name: EIE_TABLE_ADMISSIONS
+
+      - name: table_census
+        description: "Census information"
+        columns: 
+          - name: EPISODE_ID_TABLE_CENSUS
+          - name: PAYOR_TABLE_CENSUS
+          - name: PRICOUNS_TABLE_CENSUS
+
+      - name: table_stafflocations
+        description: "Staff location information (they can have access to many, but look at primary row)"
+        columns: 
+          - name: created_at_table_stafflocations
+          - name: datedoc_table_stafflocations
+          - name: datestart_table_stafflocations
+          - name: datestop_table_stafflocations
+          - name: eie_table_stafflocations
+          - name: id_table_stafflocations
+          - name: isactive_table_stafflocations
+          - name: isprimary_table_stafflocations
+          - name: location_id_table_stafflocations
+          - name: luby_id_table_stafflocations
+          - name: name_table_stafflocations
+          - name: precog_delta_key_table_stafflocations
+          - name: staff_id_table_stafflocations
+          - name: table_stafflocations_precog_key
+          - name: updated_at_table_stafflocations
+          - name: precog_delta_version_table_stafflocations
+      - name: table_users
+        description: "User information"
+        columns: 
+          - name: email_table_users
+          - name: id_table_users
+          - name: isactive_table_users
+          - name: name_table_users
+          - name: role_table_users
+          - name: title_table_users
+          - name: updated_at_table_users
