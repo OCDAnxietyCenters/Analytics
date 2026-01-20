@@ -1,32 +1,6 @@
 version: 2
 
 sources:
-  - name: lightning_step_census_admissions
-    description: "census and admission data from Lightning Step"
-    database: precog
-    schema: LS_CENSUS_ADMISSIONS_EPISODE_LIGHTNING_STEP_OAC
-    tables:
-      - name: table_admissions
-        description: "admissions information"
-        columns: 
-          - name: EPISODE_ID_TABLE_ADMISSIONS
-          - name: MRN_TABLE_ADMISSIONS
-          - name: PROGRAM_TABLE_ADMISSIONS
-          - name: FNAME_TABLE_ADMISSIONS
-          - name: LNAME_TABLE_ADMISSIONS
-          - name: DATEDISCHARGE_TABLE_ADMISSIONS
-          - name: DCTYPE_TABLE_ADMISSIONS
-          - name: DCREASON_TABLE_ADMISSIONS
-          - name: LOCATION_ID_TABLE_ADMISSIONS
-          - name: EIE_TABLE_ADMISSIONS
-
-      - name: table_census
-        description: "census information"
-        columns: 
-          - name: EPISODE_ID_TABLE_CENSUS
-          - name: PAYOR_TABLE_CENSUS
-          - name: PRICOUNS_TABLE_CENSUS
-
   - name: lightning_step_locations
     description: "location data from Lightning Step"
     database: precog
