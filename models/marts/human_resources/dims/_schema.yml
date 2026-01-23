@@ -1,0 +1,53 @@
+version: 2
+
+models:
+
+  # -----------------------------
+  # dim_staff
+  # -----------------------------
+  - name: dim_staff
+    description: "{{ doc('dim_staff') }}"
+    config:
+      meta:
+        owner_team: "Data Department"
+        owner_email: "datadepartment@ocdanxietycenters.com"
+        domain: human_resources
+        sensitivity: low
+      tags: ["hr", "staff", "dim"]
+      contract:
+        enforced: true
+    columns:
+      - name: staff_id
+        description: EMR user id (stable key)
+        data_type: number
+        tests: [not_null, unique]
+      - name: name
+        description: Display name from EMR TABLE_USERS
+        data_type: varchar
+        tests: [not_null]
+      - name: name_norm
+        description: "{{ doc('dim_staff__staff_name_norm') }}"
+        data_type: varchar
+        tests: [not_null]
+      - name: email
+        description: Lowercased staff email
+        data_type: varchar
+      - name: title
+        description: Job title from EMR
+        data_type: varchar
+      - name: role
+        description: Role label from EMR
+        data_type: varchar
+      - name: is_active
+        description: Active flag at source (TO_BOOLEAN)
+        data_type: boolean
+        tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: primary_facility
+        description: Name of primary facility
+        data_type: varchar
+      - name: primary_facility_id
+        description: Facility id of the selected primary facility
+        data_type: number

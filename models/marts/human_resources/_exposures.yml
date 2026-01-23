@@ -1,0 +1,14 @@
+version: 2
+exposures:
+  - name: therapist_hours_dashboard
+    type: dashboard
+    maturity: high
+    url: https://lookerstudio.google.com/…  # or MangoApps embed
+    description: Manager view of last-5-weekdays hours per staff.
+    owner:
+      name: Data Department
+      email: datadepartment@ocdanxietycenters.com
+#    depends_on:
+#      - ref('STAFF_GROUP_TIME_5BD')
+#      - ref('FACT_STAFF_PRESENCE_HOURLY')
+

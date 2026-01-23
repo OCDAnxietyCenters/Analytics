@@ -1,25 +1,132 @@
-# models/staging/lightning_step/census_admissions_episode/stg_lightning_step__users.yml
 version: 2
 
 models:
-  - name: stg_lightning_step__users
+
+  # -----------------------------
+  # stg_lightning_step__admissions
+  # -----------------------------
+  - name: stg_lightning_step__admissions
+    description: "{{ doc('stg_lightning_step__admissions') }}"
     config:
       contract:
         enforced: true
+      tags: ["stg", "lightning_step", "clinical", "daily"]
+      meta:
+        owner_team: "data-platform"
+        owner_email: "data@ocdanxietycenters.com"
+        phi: true
+        hipaa: true
+    columns:
+      - name: dctype_id
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: id
+        data_type: number
+        tests:
+          - not_null
+          - unique
+      - name: dcreason
+        data_type: varchar
+        tests:
+          - not_null:
+              config:
+                severity: warn
+          - unique:
+              config:
+                severity: warn
+
+  # -----------------------------
+  # stg_lightning_step__staff_locations
+  # -----------------------------
+  - name: stg_lightning_step__staff_locations
+    description: "{{ doc('stg_lightning_step__staff_locations') }}"
+    config:
+      contract:
+        enforced: true
+      tags: ["stg", "lightning_step", "hr", "daily"]
+      meta:
+        owner_team: "data-platform"
+        owner_email: "data@ocdanxietycenters.com"
+        phi: true
+        hipaa: true
+    columns:
+      - name: staff_id
+        data_type: number
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_lightning_step__users')
+                field: user_id
+              config:
+                severity: warn   # allow legit orphans; INT layer handles them
+      - name: facility_id
+        data_type: number
+        tests:
+          - not_null
+      - name: facility_name
+        data_type: varchar
+        tests:
+          - not_null
+      - name: is_primary
+        data_type: boolean
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: is_active
+        data_type: boolean
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: updated_at_text
+        data_type: varchar
+        tests: []
+      - name: datedoc_text
+        data_type: varchar
+        tests: []
+
+  # -----------------------------
+  # stg_lightning_step__users
+  # -----------------------------
+  - name: stg_lightning_step__users
+    description: "{{ doc('stg_lightning_step__users') }}"
+    config:
+      contract:
+        enforced: true
+      tags: ["stg", "lightning_step", "hr", "daily"]
+      meta:
+        owner_team: "data-platform"
+        owner_email: "data@ocdanxietycenters.com"
+        phi: true
+        hipaa: true
     columns:
       - name: user_id
         data_type: number
-        tests: [not_null, unique]
+        tests:
+          - not_null
+          - unique
       - name: email
         data_type: varchar
-        tests: [not_null]
+        tests:
+          - not_null
       - name: name
         data_type: varchar
+        tests: []
       - name: role
         data_type: varchar
+        tests: []
       - name: title
         data_type: varchar
+        tests: []
       - name: is_active
         data_type: boolean
-      - name: updated_at_ntz
-        data_type: timestamp_ntz
+        tests: []
+      - name: updated_at_text
+        data_type: varchar
+        tests: []
