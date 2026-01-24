@@ -1,0 +1,27 @@
+version: 2
+
+snapshots:
+  - name: staff_scd
+    description: "{{ doc('staff_scd') }}"
+    config:
+      meta:
+        owner_team: "Data Department"
+        owner_email: "datadepartment@ocdanxietycenters.com"
+        domain: "human_resources"
+        sensitivity: "low"
+    columns:
+      - name: staff_id
+        description: EMR user id (stable key)
+      - name: name
+        description: Display name at the time of the snapshot record
+      - name: name_norm
+        description: Normalized name for resilient joins (prefer staff_id)
+      - name: email
+        description: Lowercased staff email
+      - name: title
+      - name: role
+      - name: is_active
+      - name: primary_facility
+      - name: primary_facility_id
+      - name: dbt_valid_from
+      - name: dbt_valid_to

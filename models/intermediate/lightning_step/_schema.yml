@@ -1,0 +1,108 @@
+version: 2
+
+models:
+  - name: int_lightning_step__staff_facilities_dedup
+    description: "{{ doc('int_ls__staff_facilities_dedup') }}"
+    columns:
+      - name: staff_id
+        tests:
+          - not_null
+      - name: facility_id
+        tests:
+          - not_null
+      - name: facility_name
+      - name: is_primary
+        description: "{{ doc('col__is_active_bool') }}"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: is_active
+        description: "{{ doc('col__is_active_bool') }}"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: updated_at_ntz
+      - name: datedoc_ntz
+
+  - name: int_lightning_step__staff_primary_facility
+    description: "{{ doc('int_ls__staff_primary_facility') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [staff_id]
+    columns:
+      - name: staff_id
+        tests:
+          - not_null
+          - unique
+      - name: primary_facility
+      - name: primary_facility_id
+      - name: primary_facility_updated_at_ntz
+
+  - name: int_lightning_step__users_current
+    description: "{{ doc('int_ls__users_current') }}"
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: email
+      - name: name
+      - name: title
+      - name: role
+      - name: is_active
+        description: "{{ doc('col__is_active_bool') }}"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: updated_at_ntz
+
+  - name: int_lightning_step__staff_facilities_valid
+    description: "{{ doc('int_ls__staff_facilities_valid') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [staff_id]
+    columns:
+      - name: staff_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_lightning_step__users_current')
+                field: user_id
+      - name: user_id
+        tests:
+          - not_null
+      - name: primary_facility_id
+        tests:
+          - not_null
+      - name: email
+      - name: name
+      - name: title
+      - name: role
+      - name: user_is_active
+        description: "{{ doc('col__is_active_bool') }}"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      - name: primary_facility
+      - name: primary_facility_updated_at_ntz
+
+  - name: int_lightning_step__staff_facilities_orphans
+    description: "{{ doc('int_ls__staff_facilities_orphans') }}"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [staff_id, primary_facility_id]
+    columns:
+      - name: staff_id
+        tests:
+          - not_null
+      - name: primary_facility
+      - name: primary_facility_id
+      - name: primary_facility_updated_at_ntz

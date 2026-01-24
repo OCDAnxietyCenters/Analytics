@@ -37,6 +37,17 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   analytics:
-    # Applies to all files under models/example/
-    example:
-      +materialized: table
+    +database: ANALYTICS
+    +materialized: view
+
+    staging:
+      +schema: staging
+    intermediate:
+      +schema: int
+    marts:
+      +schema: marts
+
+snapshots:
+  analytics:
+    +target_database: ANALYTICS
+    +target_schema: "{{ target.schema }}_snapshots"

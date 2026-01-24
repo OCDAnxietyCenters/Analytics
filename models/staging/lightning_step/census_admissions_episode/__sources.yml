@@ -4,50 +4,37 @@ sources:
   - name: lightning_step_census_admissions
     description: "Census and admission data from Lightning Step"
     database: precog
-    schema: LS_CENSUS_ADMISSIONS_EPISODE_LIGHTNING_STEP_OAC
+    schema: ls_census_admissions_episode_lightning_step_oac
     tables:
       - name: table_admissions
         description: "Admissions information"
         columns: 
-          - name: EPISODE_ID_TABLE_ADMISSIONS
-          - name: MRN_TABLE_ADMISSIONS
-          - name: PROGRAM_TABLE_ADMISSIONS
-          - name: FNAME_TABLE_ADMISSIONS
-          - name: LNAME_TABLE_ADMISSIONS
-          - name: DATEDISCHARGE_TABLE_ADMISSIONS
-          - name: DCTYPE_TABLE_ADMISSIONS
-          - name: DCREASON_TABLE_ADMISSIONS
-          - name: LOCATION_ID_TABLE_ADMISSIONS
-          - name: EIE_TABLE_ADMISSIONS
+          - name: id_table_admissions
+          - name: episode_id_table_admissions
+          - name: mrn_table_admissions
+          - name: program_table_admissions
+          - name: fname_table_admissions
+          - name: lname_table_admissions
+          - name: datedischarge_table_admissions
+          - name: dctype_table_admissions
+          - name: dcreason_table_admissions
+          - name: location_id_table_admissions
+          - name: eie_table_admissions
 
       - name: table_census
         description: "Census information"
         columns: 
-          - name: EPISODE_ID_TABLE_CENSUS
-          - name: PAYOR_TABLE_CENSUS
-          - name: PRICOUNS_TABLE_CENSUS
+          - name: episode_id_table_census
+          - name: payor_table_census
+          - name: pricouns_table_census
 
-      - name: table_stafflocations
-        description: "Staff location information (they can have access to many, but look at primary row)"
-        columns: 
-          - name: created_at_table_stafflocations
-          - name: datedoc_table_stafflocations
-          - name: datestart_table_stafflocations
-          - name: datestop_table_stafflocations
-          - name: eie_table_stafflocations
-          - name: id_table_stafflocations
-          - name: isactive_table_stafflocations
-          - name: isprimary_table_stafflocations
-          - name: location_id_table_stafflocations
-          - name: luby_id_table_stafflocations
-          - name: name_table_stafflocations
-          - name: precog_delta_key_table_stafflocations
-          - name: staff_id_table_stafflocations
-          - name: table_stafflocations_precog_key
-          - name: updated_at_table_stafflocations
-          - name: precog_delta_version_table_stafflocations
       - name: table_users
-        description: "User information"
+        config:
+          freshness:
+            warn_after: {count: 48, period: hour}
+            error_after: {count: 72, period: hour}
+          loaded_at_field: updated_at_table_users
+        description: User directory from EMR
         columns: 
           - name: email_table_users
           - name: id_table_users
@@ -56,3 +43,21 @@ sources:
           - name: role_table_users
           - name: title_table_users
           - name: updated_at_table_users
+        
+      - name: table_stafflocations
+        config:
+          freshness:
+            warn_after: {count: 48, period: hour}
+            error_after: {count: 72, period: hour}
+          loaded_at_field: updated_at_table_stafflocations
+        description: Staff ↔ facility assignments
+        columns: 
+          - name: datedoc_table_stafflocations
+          - name: id_table_stafflocations
+          - name: isactive_table_stafflocations
+          - name: isprimary_table_stafflocations
+          - name: location_id_table_stafflocations
+          - name: name_table_stafflocations
+          - name: staff_id_table_stafflocations
+          - name: updated_at_table_stafflocations
+
