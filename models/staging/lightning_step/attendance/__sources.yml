@@ -2,14 +2,14 @@ version: 2
 
 sources:
   - name: lightning_step_locations
-    description: "location data from Lightning Step"
-    database: precog
-    schema: LS_ATTENDANCE_LIGHTNING_STEP_OAC
+    description: "Location data from Lightning Step"
+    database: raw_masked
+    schema: ls_attendance_lightning_step_oac
     tables:
       - name: table_locations
-        description: "facility data"
+        description: "Facility data"
         columns:
-          - name: ID_TABLE_LOCATIONS
-          - name: NAME_TABLE_LOCATIONS
+          - name: id_table_locations
+          - name: name_table_locations
 
           
