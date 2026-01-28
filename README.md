@@ -20,9 +20,9 @@
 - [Documentation](#documentation)
 - [Support & Contacts](#support--contacts)
 
----
+<!-- --- -->
 
-## Overview
+<!-- ## Overview
 
 ### Domains
 - **Lightning Step (EMR)**: Electronic Medical Records data including admissions, census, users, and staff locations
@@ -39,9 +39,9 @@
 - **Source Database**: `PRECOG` (Lightning Step EMR data)
 - **Packages**: 
   - `dbt-labs/dbt_utils` (v1.3.2)
-  - `dbt-labs/codegen` (v0.14.0)
-
----
+  - `dbt-labs/codegen` (v0.14.0) -->
+<!-- 
+--- -->
 
 ## Project Structure
 
@@ -166,6 +166,7 @@ Analytics/
 - **Intermediate**: `{target.schema}_int` (e.g. `dbt_username_int`)
 - **Marts**: `{target.schema}_marts` (e.g. `dbt_username_marts`)
 - **Snapshots**: `{target.schema}_snapshots` (e.g. `dbt_username_snapshots`)
+- **Test Audit**: `{target.schema}_dbt_test__audit` (e.g. `dbt_username_dbt_test__audit`)
 
 Schemas are defined by the dbt Cloud connection and `generate_schema_name`; no local configuration.
 
